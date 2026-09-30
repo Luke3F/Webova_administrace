@@ -1,0 +1,108 @@
+/* Barvy a základ (světlý režim) */
+:root { --bg:#f6f3ec; --pn:#fffdf8; --ink:#1d1d1b; --mut:#77736a; --ln:#e2dccd; --ac:#1f4d3f; --ac2:#e9efe9; --wn:#a3341f; box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); }
+/* Tmavý režim podle nastavení systému */
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#171714; --pn:#201f1b; --ink:#ece8dd; --mut:#9b9688; --ln:#37352e; --ac:#7fc4a8; --ac2:#25302b; --wn:#e07a66; } }
+/* Tmavý režim vynucený atributem (kdyby se přidalo tlačítko) */
+:root[data-theme="dark"] { --bg:#171714; --pn:#201f1b; --ink:#ece8dd; --mut:#9b9688; --ln:#37352e; --ac:#7fc4a8; --ac2:#25302b; --wn:#e07a66; }
+/* Všechny prvky počítají šířku včetně okrajů */
+* { box-sizing: border-box; }
+/* Základní písmo a barvy celé stránky */
+body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.55 Inter,system-ui,sans-serif; }
+/* Nadpisy používají patkové písmo */
+h1, h2, h3, .serif { font-family:Fraunces,Georgia,serif; font-weight:700; letter-spacing:-.01em; }
+/* Velikost hlavního nadpisu */
+h1 { font-size:26px; margin:0 0 4px; }
+/* Barva odkazů */
+a { color:var(--ac); }
+
+/* Rozložení administrace: menu vlevo, obsah vpravo */
+.shell { display:grid; grid-template-columns:210px 1fr; min-height:100vh; }
+/* Postranní menu */
+aside { border-right:1px solid var(--ln); padding:20px 14px; position:sticky; top:0; height:100vh; display:flex; flex-direction:column; gap:2px; }
+/* Logo v menu */
+aside .logo { font:700 20px Fraunces,Georgia,serif; padding:0 8px 18px; }
+/* Odkazy v menu */
+aside a { padding:7px 8px; border-radius:4px; color:var(--ink); text-decoration:none; border-left:3px solid transparent; }
+/* Aktivní položka menu */
+aside a.on { background:var(--ac2); border-left-color:var(--ac); font-weight:600; }
+/* Prázdné místo, které odtlačí spodní část menu dolů */
+aside .sp { flex:1; }
+/* Malý text ve spodní části menu */
+aside small { color:var(--mut); padding:0 8px; }
+/* Hlavní obsah administrace */
+main { padding:28px 34px; max-width:1000px; width:100%; }
+
+/* Šedý podtitulek */
+.sub { color:var(--mut); margin:0 0 22px; }
+/* Řádek s nadpisem a tlačítkem */
+.bar { display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
+/* Vzhled tlačítek */
+button, .btn { font:inherit; padding:7px 13px; border:1px solid var(--ln); background:var(--pn); color:var(--ink); border-radius:4px; cursor:pointer; text-decoration:none; display:inline-block; }
+/* Hlavní (zelené) tlačítko */
+button.p { background:var(--ac); border-color:var(--ac); color:var(--pn); }
+/* Tlačítko pro smazání */
+button.d { color:var(--wn); }
+/* Tlačítko vypadající jako odkaz */
+button.l { border:0; background:none; padding:2px 6px; color:var(--ac); }
+/* Červený text (mazání) */
+.cervene { color:var(--wn) !important; }
+/* Tlačítko přes celou šířku */
+.siroke { width:100%; }
+
+/* Vstupní pole formulářů */
+input, select, textarea { font:inherit; width:100%; padding:8px 10px; border:1px solid var(--ln); background:var(--pn); color:var(--ink); border-radius:4px; }
+/* Velké textové pole editoru */
+textarea { min-height:340px; font-family:ui-monospace,Menlo,monospace; font-size:13.5px; resize:vertical; }
+/* Popisky polí */
+label { display:block; font-size:12.5px; font-weight:600; color:var(--mut); margin:12px 0 4px; text-transform:uppercase; letter-spacing:.04em; }
+/* První popisek v boxu nemá horní mezeru */
+label.prvni { margin-top:0; }
+
+/* Obal tabulky (kvůli posouvání na mobilu) */
+.tw { overflow-x:auto; border:1px solid var(--ln); background:var(--pn); border-radius:4px; }
+/* Tabulka přes celou šířku */
+table { width:100%; border-collapse:collapse; }
+/* Záhlaví tabulky */
+th { text-align:left; font-size:12px; color:var(--mut); text-transform:uppercase; letter-spacing:.04em; }
+/* Buňky tabulky */
+th, td { padding:10px 12px; border-bottom:1px solid var(--ln); white-space:nowrap; }
+/* Poslední řádek nemá čáru */
+tr:last-child td { border:0; }
+/* Buňka s názvem se může zalomit */
+td.t { white-space:normal; font-weight:500; }
+
+/* Štítek stavu (Koncept) */
+.pill { font-size:12px; padding:1px 8px; border-radius:99px; border:1px solid var(--ln); color:var(--mut); }
+/* Štítek publikovaného obsahu */
+.pill.pub { background:var(--ac2); color:var(--ac); border-color:transparent; }
+
+/* Řádek s čísly na přehledu */
+.ledger { display:flex; gap:34px; flex-wrap:wrap; border-block:1px solid var(--ln); padding:14px 0; margin-bottom:26px; }
+/* Velké číslo */
+.ledger b { font:700 30px Fraunces,Georgia,serif; display:block; line-height:1.1; }
+/* Popisek pod číslem */
+.ledger span { color:var(--mut); font-size:13px; }
+
+/* Editor: dva sloupce (psaní a náhled) */
+.ed { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+/* Bílý panel */
+.box { background:var(--pn); border:1px solid var(--ln); border-radius:4px; padding:16px; }
+/* Lišta s tlačítky formátování */
+.tb { display:flex; gap:4px; margin:12px 0 6px; }
+/* Menší tlačítka v liště */
+.tb button { padding:3px 10px; }
+/* Text článku (editor i veřejný web) */
+.art { font-family:Fraunces,Georgia,serif; font-size:17px; line-height:1.7; }
+/* Nadpis uvnitř článku */
+.art h2 { font-size:24px; }
+/* Odkazy v článku */
+.art a { color:var(--ac); }
+
+/* Přihlašovací stránka */
+.auth { max-width:360px; margin:9vh auto; padding:0 18px; }
+/* Panel s formulářem přihlášení */
+.auth .box { padding:22px; }
+/* Malé oznámení dole na stránce */
+.toast { position:fixed; bottom:calc(20px + env(safe-area-inset-bottom,0px)); left:50%; transform:translateX(-50%); background:var(--ink); color:var(--bg); padding:9px 16px; border-radius:4px; z-index:9; }
+
+/* Veřejný web: úzký
